@@ -1,5 +1,61 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mezuniyet Şarkı Oylaması</title><link rel="stylesheet" href="style.css"></head>
-<body><div class="topbar"><div class="topbar-inner"><div><div class="brand">🎓 Mezuniyet Şarkı Oylaması</div><div class="muted small">Şarkılara oy ver, sonuçları gör.</div></div><div id="userBox" class="controls hidden"><span id="codeBadge" class="pill"></span><button id="logoutBtn">Kod değiştir</button></div></div></div>
-<main class="container"><section id="loginCard" class="card login-card"><h2>Kodunla giriş yap</h2><p class="muted">Sana verilen kişisel kodu yaz.</p><input id="codeInput" placeholder="Örn: MEZ-ABC123"><div style="height:10px"></div><button id="loginBtn" class="primary">Devam et</button><div id="loginMsg"></div></section>
-<section id="app" class="hidden"><div class="card"><div class="controls"><button id="sortScore" class="primary">🔥 Puan</button><button id="sortOriginal">📋 İlk sıra</button><button id="refreshBtn">↻ Yenile</button></div><div class="muted"><span id="songCount">0</span> şarkı</div><div id="globalMsg"></div></div><div id="songList" class="card" style="padding:0"></div></section></main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mezuniyet Şarkı Oylaması</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div>
+      <div class="brand">🎓 Mezuniyet Şarkı Oylaması</div>
+      <div class="muted small">Oyların butona bastığın anda otomatik kaydedilir.</div>
+    </div>
+    <div id="userBox" class="controls hidden">
+      <span id="studentBadge" class="pill"></span>
+      <button id="logoutBtn">Çıkış yap</button>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+  <section id="loginCard" class="card login-card">
+    <h2>Öğrenci girişi</h2>
+    <p class="muted">Okul numaranı gir. İlk girişinse kendine 4–6 haneli bir PIN belirleyeceksin.</p>
+    <label>Okul numarası</label>
+    <input id="schoolNoInput" inputmode="numeric" autocomplete="off" placeholder="Okul numaran">
+    <div style="height:10px"></div>
+    <button id="continueBtn" class="primary">Devam et</button>
+    <div id="loginMsg"></div>
+
+    <div id="pinArea" class="hidden">
+      <div style="height:14px"></div>
+      <div id="studentName" class="student-confirm"></div>
+      <p id="pinHelp" class="muted"></p>
+      <input id="pinInput" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 haneli PIN">
+      <div style="height:10px"></div>
+      <button id="pinBtn" class="primary"></button>
+    </div>
+  </section>
+
+  <section id="app" class="hidden">
+    <div class="card">
+      <div class="controls">
+        <button id="sortScore" class="primary">🔥 Puan sırası</button>
+        <button id="sortOriginal">📋 İlk liste sırası</button>
+        <button id="refreshBtn">↻ Yenile</button>
+      </div>
+      <div class="muted"><span id="songCount">0</span> şarkı</div>
+      <div id="globalMsg"></div>
+    </div>
+    <div id="songList" class="card" style="padding:0"></div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

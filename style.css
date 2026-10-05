@@ -1,104 +1,28 @@
 
 :root{color-scheme:dark;--bg:#0f0f0f;--panel:#181818;--muted:#aaa;--line:#2c2c2c}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}
-button,input,textarea{font:inherit}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}
 button{border:0;border-radius:999px;padding:10px 15px;background:#2a2a2a;color:#fff;font-weight:700;cursor:pointer}
-button.primary{background:#fff;color:#111}
-button.danger{background:#522}
-button.good{background:#0a6b32}
-button.bad{background:#6d242b}
-button.selected{outline:2px solid #fff}
-input,textarea{width:100%;background:#101010;border:1px solid #3a3a3a;color:#fff;border-radius:10px;padding:12px}
-textarea{min-height:140px}
-.container{max-width:980px;margin:auto;padding:18px}
-.topbar{position:sticky;top:0;z-index:10;background:#0f0f0ff0;border-bottom:1px solid var(--line)}
-.topbar-inner{max-width:980px;margin:auto;padding:16px 18px;display:flex;justify-content:space-between;gap:14px}
-.brand{font-weight:800;font-size:20px}
-.muted{color:var(--muted)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0}
-.login-card{max-width:520px;margin:60px auto}
-
-.row{
-  display:grid;
-  grid-template-columns:38px 72px minmax(0,1fr) 104px;
-  gap:12px;
-  align-items:center;
-  padding:14px 12px;
-  border-bottom:1px solid #262626;
-}
-.row:last-child{border-bottom:0}
-
-.rank-number{
-  width:32px;height:32px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  background:#292929;
-  color:#fff;
-  font-size:14px;
-  font-weight:900;
-}
-
-.cover-link{display:block}
-.cover{width:72px;height:72px;border-radius:9px;object-fit:cover;background:#242424}
-.song-main{min-width:0}
-.song-title{font-weight:800;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.artist,.stats,.small{font-size:13px;color:var(--muted)}
-.vote-area,.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.vote-area{margin-top:10px}
-.hidden{display:none!important}
-.notice{padding:12px;border-radius:10px;background:#272727;margin:12px 0}
-.error{background:#3b1d1d}
-.success{background:#16351f}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-table{width:100%;border-collapse:collapse}
-th,td{padding:9px;border-bottom:1px solid #2a2a2a;text-align:left}
-.pill{padding:5px 9px;border-radius:999px;background:#242424;font-size:12px}
-.my-vote{margin-top:5px;color:#fff}
-
-/* SADECE SCOREBOARD RENKLİ */
-.score-card{
-  min-width:96px;
-  border-radius:14px;
-  padding:10px 8px;
-  text-align:center;
-  border:1px solid rgba(255,255,255,.12);
-}
-.score-green{background:#176b35;color:#ecfff1}
-.score-yellow{background:#8a7017;color:#fff7bf}
-.score-red{background:#742f35;color:#ffe3e3}
-
-.score-label{
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:.6px;
-  opacity:.9;
-}
-.score-value{
-  font-size:30px;
-  line-height:1.1;
-  font-weight:1000;
-  margin-top:2px;
-}
-.score-rank-label{
-  font-size:10px;
-  font-weight:900;
-  margin-top:4px;
-  opacity:.95;
-}
-
-@media(max-width:650px){
-  .row{
-    grid-template-columns:32px 58px minmax(0,1fr) 88px;
-    gap:8px;
-    padding:12px 8px;
-  }
-  .rank-number{width:28px;height:28px;font-size:12px}
-  .cover{width:58px;height:58px}
-  .song-title{font-size:16px}
-  .score-card{min-width:80px;padding:9px 6px}
-  .score-value{font-size:25px}
-  .score-label{font-size:10px}
-  .vote-area{grid-column:3/5}
-  .grid2{grid-template-columns:1fr}
-  .topbar-inner{flex-direction:column}
-}
+button.primary{background:#fff;color:#111}button.danger{background:#6b2525}button.good{background:#0a6b32}button.bad{background:#6d242b}button.selected{outline:2px solid #fff}
+input,textarea{width:100%;background:#101010;border:1px solid #3a3a3a;color:#fff;border-radius:10px;padding:12px}textarea{min-height:140px}
+.container{max-width:980px;margin:auto;padding:18px}.topbar{position:sticky;top:0;z-index:10;background:#0f0f0ff0;border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:980px;margin:auto;padding:16px 18px;display:flex;justify-content:space-between;gap:14px}.brand{font-weight:800;font-size:20px}.muted{color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0}.login-card{max-width:520px;margin:60px auto}
+.row{display:grid;grid-template-columns:38px 72px minmax(0,1fr) 104px;gap:12px;align-items:center;padding:14px 12px;border-bottom:1px solid #262626}.row:last-child{border-bottom:0}
+.rank-number{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#292929;font-size:14px;font-weight:900}
+.cover{width:72px;height:72px;border-radius:9px;object-fit:cover;background:#242424}.song-main{min-width:0}.song-title{font-weight:800;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.artist,.stats,.small{font-size:13px;color:var(--muted)}.vote-area,.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.vote-area{margin-top:10px}
+.hidden{display:none!important}.notice{padding:12px;border-radius:10px;background:#272727;margin:12px 0}.error{background:#3b1d1d}.success{background:#16351f}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.pill{padding:5px 9px;border-radius:999px;background:#242424;font-size:12px}
+.score-card{min-width:96px;border-radius:14px;padding:10px 8px;text-align:center;border:1px solid rgba(255,255,255,.12)}
+.score-green{background:#176b35;color:#ecfff1}.score-yellow{background:#8a7017;color:#fff7bf}.score-red{background:#742f35;color:#ffe3e3}
+.score-label{font-size:11px;font-weight:900;letter-spacing:.6px}.score-value{font-size:30px;line-height:1.1;font-weight:1000;margin-top:2px}.score-rank-label{font-size:10px;font-weight:900;margin-top:4px}
+.student-confirm{font-weight:800;font-size:18px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.student-list{display:flex;flex-direction:column;gap:8px;margin-top:14px}.student-row{border-radius:12px;background:#222;padding:14px 16px;display:flex;justify-content:space-between;text-align:left}
+.student-name{font-weight:800}.student-meta{color:#aaa;font-size:13px}
+.modal{position:fixed;inset:0;background:#000b;z-index:100;display:flex;align-items:center;justify-content:center;padding:18px}
+.modal-card{width:min(760px,100%);max-height:90vh;overflow:auto;background:#171717;border:1px solid #333;border-radius:18px;padding:18px}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.detail-grid>div{background:#222;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:4px}
+.pin-value{font-size:22px;letter-spacing:2px}.detail-actions{margin:14px 0}.detail-table-wrap{max-height:300px;overflow:auto}
+table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #2a2a2a;text-align:left}
+@media(max-width:650px){.row{grid-template-columns:32px 58px minmax(0,1fr) 88px;gap:8px;padding:12px 8px}.cover{width:58px;height:58px}.song-title{font-size:16px}.score-card{min-width:80px}.score-value{font-size:25px}.vote-area{grid-column:3/5}.grid2,.detail-grid{grid-template-columns:1fr}.topbar-inner{flex-direction:column}.student-row{flex-direction:column;gap:5px}}
