@@ -1,0 +1,14 @@
+
+:root{color-scheme:dark;--bg:#0f0f0f;--panel:#181818;--muted:#aaa;--line:#2c2c2c;--good:#173d22;--bad:#4a2020}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}
+button,input,textarea{font:inherit}button{border:0;border-radius:999px;padding:10px 15px;background:#2a2a2a;color:#fff;font-weight:700;cursor:pointer}
+button.primary{background:#fff;color:#111}button.danger{background:#522}button.good{background:var(--good)}button.bad{background:var(--bad)}button.selected{outline:2px solid #fff}
+input,textarea{width:100%;background:#101010;border:1px solid #3a3a3a;color:#fff;border-radius:10px;padding:12px}
+textarea{min-height:140px}.container{max-width:980px;margin:auto;padding:18px}.topbar{position:sticky;top:0;z-index:10;background:#0f0f0ff0;border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:980px;margin:auto;padding:16px 18px;display:flex;justify-content:space-between;gap:14px}.brand{font-weight:800;font-size:20px}.muted{color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0}.login-card{max-width:520px;margin:60px auto}
+.row{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:11px;border-bottom:1px solid #222}.cover{width:64px;height:64px;border-radius:7px;object-fit:cover;background:#242424}
+.song-title{font-weight:800}.artist,.stats,.small{font-size:13px;color:var(--muted)}.vote-area,.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.hidden{display:none!important}
+.notice{padding:12px;border-radius:10px;background:#272727;margin:12px 0}.error{background:#3b1d1d}.success{background:#16351f}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #2a2a2a;text-align:left}.pill{padding:5px 9px;border-radius:999px;background:#242424;font-size:12px}
+@media(max-width:650px){.row{grid-template-columns:52px 1fr}.cover{width:52px;height:52px}.vote-area{grid-column:1/-1;padding-left:64px}.grid2{grid-template-columns:1fr}.topbar-inner{flex-direction:column}}
