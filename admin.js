@@ -270,24 +270,23 @@ function parseCSV(text){
 
 function normalizeHeader(s){
   return String(s||"")
+    .replace(/\uFEFF/g,"")
     .trim()
     .toLocaleLowerCase("tr-TR")
-    .replace(/\uFEFF/g,"");
+    .replace(/\s+/g," ");
 }
 
-function pick(headers,patterns){
-  const h=headers.map(normalizeHeader);
+/*
+  Exact matching is intentional.
+  It prevents a generic "URL" match from accidentally selecting
+  "Albüm Resim URL'si" instead of the Spotify track URI.
+*/
+function findColumn(headers, aliases){
+  const normalized = headers.map(normalizeHeader);
 
-  for(const p of patterns){
-    const np=normalizeHeader(p);
-    let i=h.findIndex(x=>x===np);
-    if(i>=0)return i;
-  }
-
-  for(const p of patterns){
-    const np=normalizeHeader(p);
-    let i=h.findIndex(x=>x.includes(np));
-    if(i>=0)return i;
+  for(const alias of aliases){
+    const i = normalized.indexOf(normalizeHeader(alias));
+    if(i >= 0) return i;
   }
 
   return -1;
@@ -301,6 +300,53 @@ function spotifyUriToUrl(v){
   }
 
   return value;
+}
+
+function detectSongColumns(headers){
+  return {
+    title: findColumn(headers,[
+      "Title",
+      "Video Title",
+      "Track Name",
+      "Parça Adı",
+      "Şarkı Adı",
+      "Sarki Adi",
+      "Song",
+      "Name"
+    ]),
+    artist: findColumn(headers,[
+      "Artist",
+      "Artist Name",
+      "Artist Name(s)",
+      "Sanatçı Adı",
+      "Sanatci Adi",
+      "Channel Name",
+      "Channel",
+      "Uploader"
+    ]),
+    thumbnail: findColumn(headers,[
+      "Thumbnail url",
+      "Thumbnail URL",
+      "Thumbnail",
+      "Album Image URL",
+      "Albüm Resim URL'si",
+      "Albüm Resim URL",
+      "Cover URL",
+      "Cover",
+      "Image"
+    ]),
+    songUrl: findColumn(headers,[
+      "Video url",
+      "Video URL",
+      "Track URL",
+      "Track URI",
+      "Spotify URI",
+      "Parça URI",
+      "Parca URI",
+      "URL",
+      "Link"
+    ])
+  };
 }
 
 el("replaceSongsBtn").onclick=async()=>{
@@ -321,62 +367,20 @@ el("replaceSongsBtn").onclick=async()=>{
     if(rows.length<2)throw new Error("CSV boş.");
 
     const h=rows[0];
+    const cols=detectSongColumns(h);
 
-    const it=pick(h,[
-      "title",
-      "track name",
-      "song",
-      "name",
-      "video title",
-      "parça adı",
-      "sarki adi",
-      "şarkı adı"
-    ]);
-
-    const ia=pick(h,[
-      "artist",
-      "artist name",
-      "artist name(s)",
-      "channel",
-      "uploader",
-      "sanatçı adı",
-      "sanatci adi"
-    ]);
-
-    const im=pick(h,[
-      "thumbnail",
-      "image",
-      "cover",
-      "album image url",
-      "albüm resim url'si",
-      "albüm resim url",
-      "album cover",
-      "cover url"
-    ]);
-
-    const iu=pick(h,[
-      "url",
-      "link",
-      "video url",
-      "track url",
-      "track uri",
-      "spotify uri",
-      "parça uri",
-      "parca uri"
-    ]);
-
-    if(it<0){
+    if(cols.title<0){
       throw new Error(
-        "Şarkı adı sütunu bulunamadı. Desteklenen örnekler: Parça Adı, Track Name, Title."
+        "Şarkı adı sütunu bulunamadı. Bulunan sütunlar: " + h.join(" | ")
       );
     }
 
     const songs=rows.slice(1)
       .map((r,i)=>({
-        title:(r[it]||"").trim(),
-        artist:ia>=0?(r[ia]||"").trim():"",
-        thumbnail:im>=0?(r[im]||"").trim():"",
-        youtube_url:iu>=0?spotifyUriToUrl(r[iu]):"",
+        title:(r[cols.title]||"").trim(),
+        artist:cols.artist>=0?(r[cols.artist]||"").trim():"",
+        thumbnail:cols.thumbnail>=0?(r[cols.thumbnail]||"").trim():"",
+        youtube_url:cols.songUrl>=0?spotifyUriToUrl(r[cols.songUrl]):"",
         original_order:i+1
       }))
       .filter(s=>s.title);
@@ -395,7 +399,7 @@ el("replaceSongsBtn").onclick=async()=>{
       if(error)throw error;
     }
 
-    setMsg(`${songs.length} şarkı başarıyla yüklendi.`,true);
+    setMsg(`${songs.length} şarkı başarıyla yüklendi. Spotify ve YouTube Music CSV desteği aktif.`,true);
     await loadStudents();
 
   }catch(e){
